@@ -1,0 +1,50 @@
+{
+  "captured_at": "2026-10-17T17:25:00Z",
+  "environment": {
+    "architecture": "s390x",
+    "host": "IBM LinuxONE Community Cloud",
+    "operating_system": "Ubuntu 24.04.5 LTS",
+    "service_bind": "127.0.0.1:8000",
+    "systemd_security_exposure": "4.4 OK"
+  },
+  "synthetic_model_evaluation": {
+    "dataset_sessions": 30000,
+    "normal_sessions": 21000,
+    "attack_sessions": 9000,
+    "test_true_positive": 1800,
+    "test_true_negative": 3150,
+    "test_false_positive": 0,
+    "test_false_negative": 0,
+    "average_session_inference_ms": 10.64,
+    "limitation": "Controlled synthetic holdout evidence; not a production accuracy claim."
+  },
+  "native_benchmark_30_rounds": {
+    "ml_dsa_65_keygen_ms": 0.951,
+    "ml_dsa_65_sign_average_ms": 1.126,
+    "ml_dsa_65_sign_p95_ms": 2.251,
+    "ml_dsa_65_verify_average_ms": 0.229,
+    "ml_dsa_65_verify_p95_ms": 0.256,
+    "ml_kem_768_keygen_ms": 0.199,
+    "ml_kem_768_roundtrip_average_ms": 0.211,
+    "ml_kem_768_roundtrip_p95_ms": 0.25,
+    "atomic_containment_average_ms": 2.435,
+    "atomic_containment_p95_ms": 2.796
+  },
+  "verification": {
+    "linuxone_tests_passed": 45,
+    "service_restart_result": "active",
+    "service_crash_restarts": 0,
+    "dashboard_http_status": 200,
+    "health_status": "ok"
+  },
+  "claims_boundary": {
+    "cryptography": "Native software-backed liboqs 0.16.0 on LinuxONE",
+    "vault": "Operation-only, process-memory prototype",
+    "not_claimed": [
+      "Crypto Express",
+      "HSM-backed keys",
+      "production insider-threat accuracy",
+      "persistent private-key durability"
+    ]
+  }
+}

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Quantum-Safe KeyGuard security operations dashboard">
+  <title>Quantum-Safe KeyGuard</title>
+  <link rel="stylesheet" href="/dashboard/assets/dashboard.css">
+  <script src="/dashboard/assets/dashboard.js" defer></script>
+</head>
+<body>
+  <div class="grid-glow" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="/dashboard" aria-label="Quantum-Safe KeyGuard home">
+      <span class="brand-mark" aria-hidden="true">QK</span>
+      <span><strong>Quantum-Safe</strong><small>KEYGUARD / SOC</small></span>
+    </a>
+    <div class="topbar-status">
+      <span class="live-dot" aria-hidden="true"></span>
+      <span id="connection-label">LinuxONE link ready</span>
+      <button class="ghost small" id="logout-button" type="button" hidden>End session</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">REAL-TIME AI × POST-QUANTUM CRYPTOGRAPHY</p>
+        <h1>Stop a key breach<br><span>before execution.</span></h1>
+        <p class="lede">Every sensitive operation is authenticated, checked by deterministic policy, scored by a contextual LSTM, and executed with quantum-safe cryptography on IBM LinuxONE.</p>
+        <div class="hero-actions">
+          <button class="primary" id="normal-demo-button" type="button" disabled>
+            <span>Run normal journey</span><b>01</b>
+          </button>
+          <button class="danger" id="attack-demo-button" type="button" disabled>
+            <span>Simulate key theft</span><b>02</b>
+          </button>
+        </div>
+      </div>
+      <aside class="login-card" id="login-card">
+        <div class="card-kicker"><span>SECURE ACCESS</span><span class="shield">◆</span></div>
+        <h2>Open the command centre</h2>
+        <p>Your access token stays in browser memory only and is never stored.</p>
+        <form id="login-form">
+          <label>Administrator ID<input id="user-id" value="security_admin" autocomplete="username" required></label>
+          <label>Password<input id="password" type="password" autocomplete="current-password" minlength="12" required></label>
+          <label>Device ID<input id="device-id" value="judge_dashboard" autocomplete="off" required></label>
+          <button class="primary full" type="submit">Authenticate securely</button>
+        </form>
+        <p class="form-status" id="login-status" role="status"></p>
+      </aside>
+      <aside class="identity-card" id="identity-card" hidden>
+        <div class="identity-head">
+          <span class="avatar">SA</span>
+          <div><small>AUTHENTICATED AS</small><strong id="identity-name">Security Admin</strong></div>
+          <span class="status-pill active">ACTIVE</span>
+        </div>
+        <dl>
+          <div><dt>Role</dt><dd id="identity-role">key_admin</dd></div>
+          <div><dt>Device</dt><dd id="identity-device">judge_dashboard</dd></div>
+          <div><dt>Session</dt><dd id="identity-session">—</dd></div>
+        </dl>
+        <p class="secure-note">Token held in volatile browser memory. Refreshing this page ends the dashboard session.</p>
+      </aside>
+    </section>
+
+    <section class="architecture-strip" aria-label="Decision flow">
+      <div><span>01</span><b>Identity</b><small>Opaque session token</small></div><i>→</i>
+      <div><span>02</span><b>Policy</b><small>Hard rules first</small></div><i>→</i>
+      <div><span>03</span><b>Contextual LSTM</b><small>Live behavior score</small></div><i>→</i>
+      <div><span>04</span><b>PQC Vault</b><small>ML-KEM + ML-DSA</small></div><i>→</i>
+      <div><span>05</span><b>Containment</b><small>Lock, revoke, preserve</small></div>
+    </section>
+
+    <section class="metrics" aria-label="Security metrics">
+      <article><span>ACTIVE KEYS</span><strong id="metric-active">—</strong><small>Ready for protected use</small></article>
+      <article><span>LOCKED KEYS</span><strong id="metric-locked">—</strong><small>Contained automatically</small></article>
+      <article><span>CRITICAL ALERTS</span><strong id="metric-alerts">—</strong><small>Evidence preserved</small></article>
+      <article><span>AUDITED EVENTS</span><strong id="metric-events">—</strong><small>Append-only timeline</small></article>
+    </section>
+
+    <section class="workspace">
+      <div class="panel demo-panel">
+        <div class="panel-title">
+          <div><p class="eyebrow">LIVE DEMONSTRATION</p><h2>Decision trace</h2></div>
+          <span id="demo-state" class="status-pill neutral">WAITING</span>
+        </div>
+        <div id="demo-placeholder" class="empty-state">
+          <span class="radar" aria-hidden="true"></span>
+          <h3>Ready for a real operation</h3>
+          <p>Authenticate, then run the normal journey. No mocked responses are used.</p>
+        </div>
+        <ol id="demo-steps" class="demo-steps" hidden></ol>
+      </div>
+
+      <div class="panel platform-panel">
+        <div class="panel-title"><div><p class="eyebrow">RUNTIME</p><h2>Verified platform</h2></div><span class="live-dot"></span></div>
+        <dl class="platform-list">
+          <div><dt>Host</dt><dd id="platform-host">IBM LinuxONE</dd></div>
+          <div><dt>Architecture</dt><dd id="platform-arch">s390x</dd></div>
+          <div><dt>Cryptography</dt><dd id="platform-crypto">Native liboqs</dd></div>
+          <div><dt>Behavior model</dt><dd id="platform-model">Contextual LSTM V2</dd></div>
+          <div><dt>Key boundary</dt><dd id="platform-vault">Process-memory prototype</dd></div>
+        </dl>
+        <div class="honesty-note"><b>Honest boundary</b><p>Software-backed liboqs on LinuxONE. This prototype does not claim HSM or Crypto Express protection.</p></div>
+      </div>
+    </section>
+
+    <section class="data-grid">
+      <div class="panel wide">
+        <div class="panel-title">
+          <div><p class="eyebrow">IMMUTABLE EVIDENCE</p><h2>Security event timeline</h2></div>
+          <button class="ghost small" id="refresh-button" type="button" disabled>Refresh</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Time</th><th>Action</th><th>Decision</th><th>Risk</th><th>Rule / signal</th><th>Key</th></tr></thead>
+            <tbody id="events-body"><tr><td colspan="6" class="muted-row">Authenticate to load append-only evidence.</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title"><div><p class="eyebrow">VAULT STATE</p><h2>Managed keys</h2></div></div>
+        <div id="keys-list" class="stack-list"><p class="muted-row">No authenticated data.</p></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title"><div><p class="eyebrow">RESPONSE</p><h2>Critical alerts</h2></div></div>
+        <div id="alerts-list" class="stack-list"><p class="muted-row">No alerts loaded.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <footer><span>QUANTUM-SAFE KEYGUARD</span><span>Built for IBM Z Datathon · AI for Good</span><a href="/docs">API evidence ↗</a></footer>
+</body>
+</html>

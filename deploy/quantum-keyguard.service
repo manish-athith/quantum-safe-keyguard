@@ -1,0 +1,37 @@
+[Unit]
+Description=Quantum-Safe KeyGuard on IBM LinuxONE
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=linux1
+Group=linux1
+WorkingDirectory=/home/linux1/quantum-keyguard
+Environment=PYTHONPATH=/home/linux1/quantum-keyguard/src
+Environment=LD_LIBRARY_PATH=/home/linux1/.local/lib
+Environment=KEYGUARD_DATABASE=/home/linux1/quantum-keyguard/runtime/keyguard.db
+Environment=KEYGUARD_MODEL=/home/linux1/quantum-keyguard/artifacts/contextual_lstm_detector.json
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/home/linux1/quantum-keyguard/.venv/bin/python -m uvicorn quantum_keyguard.main:app --host 127.0.0.1 --port 8000 --no-access-log
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=20
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=full
+ProtectHome=read-only
+ReadWritePaths=/home/linux1/quantum-keyguard/runtime
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+CapabilityBoundingSet=
+LockPersonality=true
+SystemCallArchitectures=native
+LimitNOFILE=4096
+
+[Install]
+WantedBy=multi-user.target

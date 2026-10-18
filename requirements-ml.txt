@@ -1,0 +1,5 @@
+# Training dependency for the laptop. The exported detector uses only Python's
+# standard library on LinuxONE s390x.
+torch
+numpy
+
